@@ -1,0 +1,77 @@
+<?php
+
+$title = 'Guest-Book';
+$this->headTitle($title);
+?>
+
+<?php echo 'The site is under development now...' ?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<!--<p>-->
+<!--    <a href="--><?php //echo $this->url('book', array('action'=>'add'));?><!--">Add new message</a>-->
+<!--</p>-->
+
+<table class="table">
+    <tr>
+        <th>User name</th>
+        <th>E-mail</th>
+        <th>Home page</th>
+        <th>Message</th>
+        <th>Date of the publication</th>
+        <th>&nbsp;</th>
+    </tr>
+
+<!--Sorting table-->
+<!--    --><?php
+//    if(! isset($key)) :
+//        $key = "message_date";
+//    endif;
+//
+//    $result = mysql_query("SELECT * FROM book ORDER BY $key DESC");
+//
+//    ?>
+
+    <?php foreach ($books as $book) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($book->user_name);?></td>
+            <td><?php echo $this->escapeHtml($book->email);?></td>
+            <td><?php echo $this->escapeHtml($book->home_page);?></td>
+            <td><?php echo $this->escapeHtml($book->message);?></td>
+            <td><?php echo date('d F Y H:i:s', $this->escapeHtml($book->message_date));?></td>
+            <td>
+<!--               <a href="--><?php //echo $this->url('book',
+//                    array('action'=>'edit', 'id' => $book->id));?><!--">Edit</a>-->
+                <a href="<?php echo $this->url('book',
+                    array('action'=>'delete', 'id' => $book->id));?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?php
+
+$title = 'Add new message:';
+$this->headTitle($title);
+?>
+    <h3><?php echo $this->escapeHtml($title); ?></h3>
+<?php
+$form->setAttribute('action', $this->url('book', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo '*'.$this->formRow($form->get('user_name')).'<br/>';
+echo '*'.$this->formRow ($form->get('email')).'<br/>';
+echo $this->formRow($form->get('home_page')).'<br/>';
+echo '*'.$this->formRow($form->get('message')).'<br/>';
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+echo '* - fields must be required!';
+?>
+
+<!--<form>-->
+<!--    <input type="text" width="150px" height="50px" >-->
+<!--    <input type="button" >-->
+<!--</form>-->
+
