@@ -1,12 +1,12 @@
 <?php
 
-$title = 'Guest-Book';
-$this->headTitle($title);
+//$title = 'Guest-Book';
+//$this->headTitle($title);
 ?>
 
 <?php echo 'The site is under development now...' ?>
 
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+<h1><?php echo $this->escapeHtml('Guest-Book'); ?></h1>
 <!--<p>-->
 <!--    <a href="--><?php //echo $this->url('book', array('action'=>'add'));?><!--">Add new message</a>-->
 <!--</p>-->
@@ -20,16 +20,6 @@ $this->headTitle($title);
         <th>Date of the publication</th>
         <th>&nbsp;</th>
     </tr>
-
-<!--Sorting table-->
-<!--    --><?php
-//    if(! isset($key)) :
-//        $key = "message_date";
-//    endif;
-//
-//    $result = mysql_query("SELECT * FROM book ORDER BY $key DESC");
-//
-//    ?>
 
     <?php foreach ($books as $book) : ?>
         <tr>
@@ -49,12 +39,13 @@ $this->headTitle($title);
 
 </table>
 
+
 <?php
 
-$title = 'Add new message:';
-$this->headTitle($title);
+//$title = 'Add new message';
+//$this->headTitle($title);
 ?>
-    <h3><?php echo $this->escapeHtml($title); ?></h3>
+    <h3><?php echo $this->escapeHtml('Add new message:'); ?></h3>
 <?php
 $form->setAttribute('action', $this->url('book', array('action' => 'add')));
 $form->prepare();
@@ -66,12 +57,10 @@ echo '*'.$this->formRow ($form->get('email')).'<br/>';
 echo $this->formRow($form->get('home_page')).'<br/>';
 echo '*'.$this->formRow($form->get('message')).'<br/>';
 echo $this->formSubmit($form->get('submit'));
+echo $this->formHidden($form->get('user_ip'));
 echo $this->form()->closeTag();
 echo '* - fields must be required!';
+//var_dump($_SERVER);
 ?>
 
-<!--<form>-->
-<!--    <input type="text" width="150px" height="50px" >-->
-<!--    <input type="button" >-->
-<!--</form>-->
 

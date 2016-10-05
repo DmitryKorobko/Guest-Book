@@ -49,13 +49,7 @@ class BookForm extends Form
                 'label' => 'Message',
             ),
         ));
-        /*$this->add(array(
-            'name' => 'message_date',
-            'type' => 'date',
-            'options' => array(
-                'label' => 'Date of the publication',
-            ),
-        ));*/
+
         $this->add(array(
             'name' => 'submit',
             'type' => 'Submit',
@@ -63,6 +57,11 @@ class BookForm extends Form
                 'value' => 'Go',
                 'id' => 'submitbutton',
             ),
+        ));
+
+        $this->add(array(
+            'name' => 'user_ip',
+            'type' => 'Hidden',
         ));
     }
 }

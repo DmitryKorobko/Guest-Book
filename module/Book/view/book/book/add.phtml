@@ -14,6 +14,7 @@ echo '*'.$this->formRow($form->get('user_name'));
 echo '*'.$this->formRow($form->get('email'));
 echo $this->formRow($form->get('home_page'));
 echo '*'.$this->formRow($form->get('message'));
+echo $this->formHidden($form->get('user_ip'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
 echo '* - fields must be required!';

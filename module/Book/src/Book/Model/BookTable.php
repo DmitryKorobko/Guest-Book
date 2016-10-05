@@ -44,6 +44,7 @@ class BookTable
             'home_page'  => $book->home_page,
             'message'  => $book->message,
             'message_date'  => $book->message_date,
+            'user_ip' => $book->user_ip,
         );
 
         $id = (int) $book->id;

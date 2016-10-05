@@ -20,6 +20,7 @@ class Book
     public $home_page;
     public $message;
     public $message_date;
+    public $user_ip;
     protected $inputFilter;
 
     public function exchangeArray($data)
@@ -30,6 +31,7 @@ class Book
         $this->home_page     = $data['home_page'] ? $data['home_page'] : null;
         $this->message = (!empty($data['message'])) ? $data['message'] : null;
         $this->message_date  = (!empty($data['message_date'])) ? $data['message_date'] : time();
+        $this->user_ip  = (!empty($data['user_ip'])) ? $data['user_ip'] : $_SERVER['REMOTE_ADDR'];
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
