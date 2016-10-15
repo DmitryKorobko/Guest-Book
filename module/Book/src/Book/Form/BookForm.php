@@ -23,45 +23,63 @@ class BookForm extends Form
         ));
         $this->add(array(
             'name' => 'user_name',
-            'type' => 'Text',
+            'attributes'=> array(
+                'type' => 'Text',
+                'id'   => 'user_name',
+            ),
             'options' => array(
-                'label' => 'User name',
+                'label' => 'User Name',
             ),
         ));
         $this->add(array(
             'name' => 'email',
-            'type' => 'email',
+            'attributes'=> array(
+                'type' => 'email',
+                'id'   => 'email',
+            ),
             'options' => array(
-                'label' => 'E-mail',
+                'label' => 'Email',
             ),
         ));
         $this->add(array(
             'name' => 'home_page',
-            'type' => 'url',
+            'attributes'=> array(
+                'type' => 'url',
+                'id'   => 'home_page',
+            ),
             'options' => array(
                 'label' => 'Home page',
             ),
         ));
         $this->add(array(
             'name' => 'message',
-            'type' => 'Text',
+            'attributes'=> array(
+                'type' => 'Text',
+                'id'   => 'message',
+            ),
             'options' => array(
-                'label' => 'Message',
+                'label' => 'Text',
             ),
         ));
-
         $this->add(array(
-            'name' => 'submit',
-            'type' => 'Submit',
+            'name' => 'button',
+            'type' => 'button',
             'attributes' => array(
-                'value' => 'Go',
-                'id' => 'submitbutton',
+                'value' => 'Add',
+                'id' => 'button',
             ),
         ));
-
         $this->add(array(
             'name' => 'user_ip',
             'type' => 'Hidden',
         ));
+    }
+    public function getInvalidInputName(){
+        $names=$this->getInputFilter()->getInvalidInput();
+        foreach ($names as $n=>$k){
+            $val=$k->value;
+            $name[$n]= $val;
+        }
+        return $name;
     }
 }

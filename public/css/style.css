@@ -36,6 +36,11 @@ div.container a.brand {
     padding: 8px 20px 12px 40px;
 }
 
+.input-error{
+    background-color: #FFFF00;
+    color: #a6000c;
+}
+
 /*.formRow{*/
     /*height:90px;*/
     /*padding:10px;*/

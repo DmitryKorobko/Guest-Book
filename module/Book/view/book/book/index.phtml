@@ -1,9 +1,3 @@
-<?php
-
-//$title = 'Guest-Book';
-//$this->headTitle($title);
-?>
-
 <?php echo 'The site is under development now...' ?>
 
 <h1><?php echo $this->escapeHtml('Guest-Book'); ?></h1>
@@ -40,14 +34,10 @@
 </table>
 
 
-<?php
-
-//$title = 'Add new message';
-//$this->headTitle($title);
-?>
     <h3><?php echo $this->escapeHtml('Add new message:'); ?></h3>
 <?php
-$form->setAttribute('action', $this->url('book', array('action' => 'add')));
+//$form->setAttribute('action', $this->url('book', array('action' => 'add')));
+$form=(object)$form;
 $form->prepare();
 
 echo $this->form()->openTag($form);
@@ -56,11 +46,10 @@ echo '*'.$this->formRow($form->get('user_name')).'<br/>';
 echo '*'.$this->formRow ($form->get('email')).'<br/>';
 echo $this->formRow($form->get('home_page')).'<br/>';
 echo '*'.$this->formRow($form->get('message')).'<br/>';
-echo $this->formSubmit($form->get('submit'));
+echo $this->formReset($form->get('button'));
 echo $this->formHidden($form->get('user_ip'));
 echo $this->form()->closeTag();
 echo '* - fields must be required!';
-//var_dump($_SERVER);
 ?>
 
 

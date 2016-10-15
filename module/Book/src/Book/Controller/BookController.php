@@ -12,64 +12,29 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Book\Model\Book;          
 use Book\Form\BookForm;
+use Zend\View\Model\JsonModel;
 
 class BookController extends AbstractActionController
 {
     protected $bookTable;
-    
+
     public function indexAction()
     {
-
-        $form = new BookForm();
-        $form->get('submit')->setValue('Add');
-
         $request = $this->getRequest();
-        if ($request->isPost()) {
-            $book = new Book();
-            $form->setInputFilter($book->getInputFilter());
-            $form->setData($request->getPost());
-
-            if ($form->isValid()) {
-                $book->exchangeArray($form->getData());
-                $this->getBookTable()->saveBook($book);
-
-                // Redirect to list of books
-                return $this->redirect()->toRoute('book');
-            }
+        if ($request->isXmlHttpRequest()){
+            return "loop";
+        }else {
+            $form = new BookForm();
+            return new ViewModel(array(
+                'books' => $this->getBookTable()->fetchAll(),
+                'form' => $form,
+            ));
         }
-
-        return new ViewModel(array(
-            'books' => $this->getBookTable()->fetchAll(),
-            'form' => $form,
-        ));
     }
 
-    public function addAction()
-    {
-        $form = new BookForm();
-        $form->get('submit')->setValue('Add');
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $book = new Book();
-            $form->setInputFilter($book->getInputFilter());
-            $form->setData($request->getPost());
-
-            if ($form->isValid()) {
-                $book->exchangeArray($form->getData());
-                $this->getBookTable()->saveBook($book);
-
-                // Redirect to list of books
-                return $this->redirect()->toRoute('book');
-            }
-        }
-        return array('form' => $form);
-    }
-
-
-    public function editAction()
-    {
-    }
+//    public function editAction()
+//    {
+//    }
 
     public function deleteAction()
     {
@@ -104,5 +69,29 @@ class BookController extends AbstractActionController
             $this->bookTable = $sm->get('Book\Model\BookTable');
         }
         return $this->bookTable;
+    }
+
+    public function ajaxAction(){
+        $form = new BookForm();
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest()){
+            $book = new Book();
+            $form->setInputFilter($book->getInputFilter());
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $book->exchangeArray($form->getData());
+                $this->getBookTable()->saveBook($book);
+                $this->response->setStatusCode(200);
+                return new JsonModel(array("message" => "Form is valid!"));
+            }else{
+                $invalfields = $form->getInputFilter()->getMessages();
+                print_r($invalfields);
+                exit();
+                $this->response->setStatusCode(400);
+                return new JsonModel(array("message" => "$fieldname"));
+            }
+        }else{
+            return false;
+        }
     }
 }
