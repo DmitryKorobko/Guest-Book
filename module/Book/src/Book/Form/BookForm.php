@@ -54,8 +54,9 @@ class BookForm extends Form
         $this->add(array(
             'name' => 'message',
             'attributes'=> array(
-                'type' => 'Text',
+                'type' => 'Textarea',
                 'id'   => 'message',
+                'rows' => '5',
             ),
             'options' => array(
                 'label' => 'Text',
@@ -74,12 +75,4 @@ class BookForm extends Form
             'type' => 'Hidden',
         ));
     }
-    public function getInvalidInputName(){
-        $names=$this->getInputFilter()->getInvalidInput();
-        foreach ($names as $n=>$k){
-            $val=$k->value;
-            $name[$n]= $val;
-        }
-        return $name;
-    }
-}
+ }

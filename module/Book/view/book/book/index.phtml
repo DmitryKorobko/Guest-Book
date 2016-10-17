@@ -1,3 +1,4 @@
+
 <?php echo 'The site is under development now...' ?>
 
 <h1><?php echo $this->escapeHtml('Guest-Book'); ?></h1>
@@ -45,7 +46,7 @@ echo $this->formHidden($form->get('id'));
 echo '*'.$this->formRow($form->get('user_name')).'<br/>';
 echo '*'.$this->formRow ($form->get('email')).'<br/>';
 echo $this->formRow($form->get('home_page')).'<br/>';
-echo '*'.$this->formRow($form->get('message')).'<br/>';
+echo '*'.$this->formLabel($form->get('message')).$this->formTextarea($form->get('message')).'<br/>';
 echo $this->formReset($form->get('button'));
 echo $this->formHidden($form->get('user_ip'));
 echo $this->form()->closeTag();

@@ -80,12 +80,12 @@ class Book
                 ),
                 'validators' => array(
                     array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 70,
-                        ),
+                        'name'    => 'EmailAddress',
+//                        'options' => array(
+//                            'encoding' => 'UTF-8',
+//                            'min'      => 1,
+//                            'max'      => 70,
+//                        ),
                     ),
                 ),
             ));

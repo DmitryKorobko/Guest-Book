@@ -85,10 +85,8 @@ class BookController extends AbstractActionController
                 return new JsonModel(array("message" => "Form is valid!"));
             }else{
                 $invalfields = $form->getInputFilter()->getMessages();
-                print_r($invalfields);
-                exit();
                 $this->response->setStatusCode(400);
-                return new JsonModel(array("message" => "$fieldname"));
+                return new JsonModel($invalfields); //Error message
             }
         }else{
             return false;

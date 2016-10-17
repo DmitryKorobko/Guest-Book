@@ -41,6 +41,15 @@ div.container a.brand {
     color: #a6000c;
 }
 
+#email{
+    width: 223px;
+}
+
+#message{
+    width: 228px;
+    height: 160px;
+    word-break: break-all;
+}
 /*.formRow{*/
     /*height:90px;*/
     /*padding:10px;*/

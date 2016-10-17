@@ -37,7 +37,7 @@ $(document).ready(function (){
             error: function(data) {
                 console.log("Don't good");
                 console.debug(data);
-                alert(data.responseJSON.message);
+                alert(data.responseJSON); //Error message
             }
 
         });
